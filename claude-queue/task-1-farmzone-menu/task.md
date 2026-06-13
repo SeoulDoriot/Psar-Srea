@@ -1,0 +1,3 @@
+hey for the Farm zone can you make the rigth menu have these symbols ? 
+and make every popular Crops can be scroll horizontally ? to make sure like user needed in their province it's kinda like : 
+some rare but still needed by some company such as : vanila i don't know if it at the end or not but i want all the available that when click it's change the logo of the mondulkiri symbol into somethign related to popular crops like that if you click mango it's gonna show  mango like i show you in screenshot
