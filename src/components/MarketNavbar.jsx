@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const categories = [
-  { label: "Fresh", href: "#/market" },
-  { label: "Wholesale", href: "#/market" },
-  { label: "Upcoming", href: "#/market#upcoming" },
-  { label: "Deals", href: "#/market#featured" },
+  { label: "Fresh", href: "#/buy#fresh", activeRoutes: ["buy"] },
+  { label: "Wholesale", href: "#/buy#wholesale", activeRoutes: ["buy"] },
+  { label: "Upcoming", href: "#/buy#season", activeRoutes: ["buy"] },
+  { label: "Deals", href: "#/buy#deals", activeRoutes: ["buy"] },
 ];
 
 const welcomeLinks = [
@@ -41,7 +41,29 @@ function Icon({ name }) {
 }
 
 export default function MarketNavbar({ route = "welcome" }) {
+  const isMarketShell = route === "market" || route === "search" || route === "profile" || route === "buy";
   const [lang, setLang] = useState("ខ្មែរ");
+  const [query, setQuery] = useState(() => {
+    const params = new URLSearchParams(window.location.hash.split("?")[1] || "");
+    return params.get("q") || "";
+  });
+  const [currentHash, setCurrentHash] = useState(() => window.location.hash || "#/");
+
+  useEffect(() => {
+    const onHash = () => {
+      const params = new URLSearchParams(window.location.hash.split("?")[1] || "");
+      setQuery(params.get("q") || "");
+      setCurrentHash(window.location.hash || "#/");
+    };
+    window.addEventListener("hashchange", onHash);
+    return () => window.removeEventListener("hashchange", onHash);
+  }, []);
+
+  function submitSearch(event) {
+    event.preventDefault();
+    const nextQuery = query.trim();
+    window.location.hash = nextQuery ? `/search?q=${encodeURIComponent(nextQuery)}` : "/search";
+  }
 
   return (
     <header className={`market-nav ${route === "welcome" ? "is-welcome" : "is-market"}`}>
@@ -67,20 +89,30 @@ export default function MarketNavbar({ route = "welcome" }) {
           ) : (
             <>
               <a href="#/" className={route === "welcome" ? "is-active" : ""}>Home</a>
-              {categories.map((c) => (
-                <a key={c.label} href={c.href} className={route === "market" && c.label === "Fresh" ? "is-active" : ""}>
+              {categories.map((c) => {
+                const isDefaultFresh = c.label === "Fresh" && route === "buy" && (currentHash === "#/buy" || currentHash === "#/buy#fresh");
+                const isActive = isDefaultFresh || (c.activeRoutes.includes(route) && currentHash === c.href);
+                return (
+                <a key={c.label} href={c.href} className={isActive ? "is-active" : ""}>
                   {c.label}
                 </a>
-              ))}
+                );
+              })}
             </>
           )}
         </nav>
 
-        {route === "market" && (
-          <label className="mn-search">
+        {isMarketShell && (
+          <form className="mn-search" onSubmit={submitSearch} role="search">
             <Icon name="search" />
-            <input type="search" placeholder="Search products or farmers..." aria-label="Search products or farmers" />
-          </label>
+            <input
+              type="search"
+              placeholder="Search products or farmers..."
+              aria-label="Search products or farmers"
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+            />
+          </form>
         )}
 
         <div className="mn-actions">
@@ -96,13 +128,13 @@ export default function MarketNavbar({ route = "welcome" }) {
             </svg>
             {lang}
           </button>
-          {route === "market" ? (
+          {isMarketShell ? (
             <>
-              <button type="button" className="icon-btn cart-btn" aria-label="Cart">
+              <a className="icon-btn cart-btn" href="#/buy#cart" aria-label="Cart">
                 <Icon name="cart" />
                 <span className="cart-badge">2</span>
-              </button>
-              <button type="button" className="avatar" aria-label="Profile">PS</button>
+              </a>
+              <a className="avatar" href="#/profile" aria-label="Profile">PS</a>
             </>
           ) : (
             <a className="button button-primary nav-market-cta" href="#/market">

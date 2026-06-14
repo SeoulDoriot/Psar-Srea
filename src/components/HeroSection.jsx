@@ -7,7 +7,7 @@ const marketModes = [
     text: "Fresh crops available today from verified Cambodian farmers.",
     tone: "fresh",
     icon: "basket",
-    href: "#/market",
+    href: "#/buy#fresh",
   },
   {
     title: "Wholesale",
@@ -15,7 +15,7 @@ const marketModes = [
     text: "Bulk buyers can negotiate supply directly with farmer groups.",
     tone: "wholesale",
     icon: "handshake",
-    href: "#/market",
+    href: "#/buy#wholesale",
   },
   {
     title: "Upcoming Season",
@@ -23,7 +23,7 @@ const marketModes = [
     text: "Reserve harvests before the season starts and plan supply early.",
     tone: "upcoming",
     icon: "calendar",
-    href: "#/market#upcoming",
+    href: "#/buy#season",
   },
   {
     title: "Good Price",
@@ -31,7 +31,7 @@ const marketModes = [
     text: "Move surplus crops faster with fair offers from trusted buyers.",
     tone: "surplus",
     icon: "tag",
-    href: "#/market#featured",
+    href: "#/buy#deals",
   },
 ];
 

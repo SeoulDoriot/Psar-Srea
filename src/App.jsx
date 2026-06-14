@@ -3,6 +3,9 @@ import AnnouncementBar from "./components/AnnouncementBar.jsx";
 import MarketNavbar from "./components/MarketNavbar.jsx";
 import HomePage from "./pages/HomePage.jsx";
 import FreshLanding from "./pages/FreshLanding.jsx";
+import SearchPage from "./pages/SearchPage.jsx";
+import ProfilePage from "./pages/ProfilePage.jsx";
+import BuyFlowPage from "./pages/BuyFlowPage.jsx";
 
 // Hash convention:
 //   route hashes start with "/"  →  "#/" (Welcome entry), "#/market" (marketplace)
@@ -14,7 +17,8 @@ function parseHash() {
   const i = raw.indexOf("#");
   const path = (i >= 0 ? raw.slice(0, i) : raw) || "/";
   const anchor = i >= 0 ? raw.slice(i + 1) : "";
-  return { route: path.startsWith("/market") ? "market" : "welcome", anchor };
+  const route = path.startsWith("/buy") ? "buy" : path.startsWith("/profile") ? "profile" : path.startsWith("/search") ? "search" : path.startsWith("/market") ? "market" : "welcome";
+  return { route, anchor };
 }
 
 export default function App() {
@@ -46,7 +50,7 @@ export default function App() {
     <>
       <AnnouncementBar />
       <MarketNavbar route={route} />
-      {route === "market" ? <HomePage /> : <FreshLanding />}
+      {route === "buy" ? <BuyFlowPage /> : route === "profile" ? <ProfilePage /> : route === "search" ? <SearchPage /> : route === "market" ? <HomePage /> : <FreshLanding />}
     </>
   );
 }

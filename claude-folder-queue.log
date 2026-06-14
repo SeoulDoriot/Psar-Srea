@@ -1,0 +1,583 @@
+Claude folder queue started at Sun Jun 14 02:02:49 +07 2026
+======================================
+Waiting to run task folder: claude-queue/task-1-fresh
+Started checking at Sun Jun 14 02:02:49 +07 2026
+Trying Claude for claude-queue/task-1-fresh at Sun Jun 14 02:02:49 +07 2026
+Failed to authenticate. API Error: 401 Invalid authentication credentials
+Claude failed / no token / server limited. Waiting 20 minutes...
+Claude folder queue started at Sun Jun 14 02:12:20 +07 2026
+======================================
+Waiting to run task folder: claude-queue/task-1-fresh
+Started checking at Sun Jun 14 02:12:20 +07 2026
+Trying Claude for claude-queue/task-1-fresh at Sun Jun 14 02:12:20 +07 2026
+You've hit your session limit · resets 4:10am (Asia/Phnom_Penh)
+Claude failed / no token / server limited. Waiting 20 minutes...
+Claude folder queue started at Sun Jun 14 02:15:10 +07 2026
+======================================
+Waiting to run task folder: claude-queue/task-1-fresh
+Started checking at Sun Jun 14 02:15:10 +07 2026
+Trying Claude for claude-queue/task-1-fresh at Sun Jun 14 02:15:10 +07 2026
+You've hit your session limit · resets 4:10am (Asia/Phnom_Penh)
+Claude failed / no token / server limited. Waiting 20 minutes...
+Claude folder queue started at Sun Jun 14 02:20:53 +07 2026
+======================================
+Waiting to run task folder: claude-queue/task-1-fresh
+Started checking at Sun Jun 14 02:20:53 +07 2026
+Trying Claude for claude-queue/task-1-fresh at Sun Jun 14 02:20:53 +07 2026
+You've hit your session limit · resets 4:10am (Asia/Phnom_Penh)
+Claude failed / no token / server limited. Waiting 20 minutes...
+Trying Claude for claude-queue/task-1-fresh at Sun Jun 14 02:32:23 +07 2026
+You've hit your session limit · resets 4:10am (Asia/Phnom_Penh)
+Claude failed / no token / server limited. Waiting 20 minutes...
+Trying Claude for claude-queue/task-1-fresh at Sun Jun 14 02:40:56 +07 2026
+You've hit your session limit · resets 4:10am (Asia/Phnom_Penh)
+Claude failed / no token / server limited. Waiting 20 minutes...
+Trying Claude for claude-queue/task-1-fresh at Sun Jun 14 02:52:26 +07 2026
+You've hit your session limit · resets 4:10am (Asia/Phnom_Penh)
+Claude failed / no token / server limited. Waiting 20 minutes...
+Trying Claude for claude-queue/task-1-fresh at Sun Jun 14 03:00:59 +07 2026
+You've hit your session limit · resets 4:10am (Asia/Phnom_Penh)
+Claude failed / no token / server limited. Waiting 20 minutes...
+Trying Claude for claude-queue/task-1-fresh at Sun Jun 14 03:12:28 +07 2026
+You've hit your session limit · resets 4:10am (Asia/Phnom_Penh)
+Claude failed / no token / server limited. Waiting 20 minutes...
+Trying Claude for claude-queue/task-1-fresh at Sun Jun 14 03:21:01 +07 2026
+You've hit your session limit · resets 4:10am (Asia/Phnom_Penh)
+Claude failed / no token / server limited. Waiting 20 minutes...
+Trying Claude for claude-queue/task-1-fresh at Sun Jun 14 03:32:31 +07 2026
+You've hit your session limit · resets 4:10am (Asia/Phnom_Penh)
+Claude failed / no token / server limited. Waiting 20 minutes...
+Trying Claude for claude-queue/task-1-fresh at Sun Jun 14 03:41:04 +07 2026
+You've hit your session limit · resets 4:10am (Asia/Phnom_Penh)
+Claude failed / no token / server limited. Waiting 20 minutes...
+Trying Claude for claude-queue/task-1-fresh at Sun Jun 14 03:52:34 +07 2026
+You've hit your session limit · resets 4:10am (Asia/Phnom_Penh)
+Claude failed / no token / server limited. Waiting 20 minutes...
+Trying Claude for claude-queue/task-1-fresh at Sun Jun 14 04:01:07 +07 2026
+You've hit your session limit · resets 4:10am (Asia/Phnom_Penh)
+Claude failed / no token / server limited. Waiting 20 minutes...
+Trying Claude for claude-queue/task-1-fresh at Sun Jun 14 04:12:36 +07 2026
+I'm blocked: every file-writing tool (Edit, Write, and Bash writes) is returning a permission-pending error in this run, so I cannot apply or commit the changes myself right now. I've fully designed and prepared the implementation — it's ready to apply the moment write access is granted.
+
+## What the task asks (task-1-farmzone-menu)
+1. Give the **right-hand menu** (the zone detail card stats) **symbols/icons** like the screenshot.
+2. Make **popular crops scroll horizontally**.
+3. Make crops **clickable** — clicking one (e.g. Mango) **swaps the zone logo** to that crop's emoji and relabels it "**Mango Zone**".
+
+All changes are confined to the Farm Zone feature (`FarmZoneMapSection.jsx` + its CSS in `styles.css`). No header/nav/search/cart/profile/language code is touched.
+
+## Prepared changes (ready to apply)
+
+**`src/components/FarmZoneMapSection.jsx`**
+- Add a `CROP_EMOJI` map (Mango→🥭, Rice→🌾, Avocado→🥑, Coffee→☕, etc.) + `cropEmoji()` helper with a 🌱 fallback.
+- Add a small inline-SVG `StatIcon` component (people / box / calendar / tag / shield-check) matching the screenshot's line icons.
+- In `ProvinceCard`: add `activeCrop` state (auto-resets per province since the card is keyed by id). Render popular crops as clickable `<button class="crop-pill">` with an emoji. Clicking swaps the head `zone-emoji` to the crop emoji and changes the eyebrow to `"{Crop} Zone"`; clicking again deselects.
+- Add a `StatIcon` to each of the 5 stat rows (Farmers available, Estimated supply, Harvest window, Fair price range, Verified by), wrapped in a `.zone-stat-label`.
+
+**`src/styles.css`** (still to write)
+- `.popular-crop-list` → `flex-wrap: nowrap; overflow-x: auto;` with thin scrollbar and `flex: 0 0 auto` items for horizontal scrolling.
+- `.crop-pill` / `.crop-pill.is-active` pill button styling + `.crop-pill-emoji`.
+- `.zone-stat-label { display:inline-flex; align-items:center; gap:8px }` with green-tinted icon color, and `.zone-emoji.is-crop { font-size: 1.7rem }` so the swapped crop emoji renders larger.
+
+## To proceed
+Please **approve the write/edit permission** (ideally "allow for session" so the edit, the CSS edit, and the git commit all go through). Once you grant it, I'll apply both files, sanity-check, and commit with a clear message. 
+
+Would you like to grant write access now, or should I hand off the prepared code as a patch for you to apply manually?
+Completed claude-queue/task-1-fresh at Sun Jun 14 04:17:31 +07 2026
+Pausing 5 minutes before next task...
+Trying Claude for claude-queue/task-1-fresh at Sun Jun 14 04:21:09 +07 2026
+======================================
+Waiting to run task folder: claude-queue/task-2-wholesale
+Started checking at Sun Jun 14 04:22:31 +07 2026
+Trying Claude for claude-queue/task-2-wholesale at Sun Jun 14 04:22:31 +07 2026
+I don't have write permission to the file yet. The edits keep getting blocked.
+
+Could you grant write access to `src/components/FarmZoneMapSection.jsx` (and `src/styles.css`)? Once you approve, I'll apply all the changes. Here's exactly what I'm going to do:
+
+**`FarmZoneMapSection.jsx`**
+1. Add a `CROP_EMOJI` map + `cropEmoji()` helper, and a `STAT_ICONS` set of outline SVGs (farmers / supply / harvest / price / verified) matching screenshot 2.
+2. Rewrite `ProvinceCard` to:
+   - Track a `selectedCrop` via `useState` (resets per province since the `<aside key={selected.id}>` remounts it).
+   - Swap the header logo to `cropEmoji(selectedCrop)` and the eyebrow to `"{Crop} Zone"` when a crop is tapped (screenshot 1 behavior).
+   - Render popular crops as clickable chips inside a horizontally-scrollable row.
+   - Prepend each stat row with its `STAT_ICONS` symbol.
+
+**`styles.css`**
+- `.popular-crop-list` → horizontal scroll (`flex-wrap: nowrap; overflow-x: auto`) with clickable/active chip styling.
+- `.zone-stat-label` flex+gap for the icon, sized SVG in green.
+- `.zone-emoji.is-crop` larger font for the emoji logo.
+
+Shall I proceed? Please approve the file write and I'll complete the task.
+Completed claude-queue/task-1-fresh at Sun Jun 14 04:23:36 +07 2026
+Pausing 5 minutes before next task...
+======================================
+Waiting to run task folder: claude-queue/task-2-wholesale
+Started checking at Sun Jun 14 04:28:36 +07 2026
+Trying Claude for claude-queue/task-2-wholesale at Sun Jun 14 04:28:36 +07 2026
+Every tool action in this session — Write, Edit, shell writes, even the clarifying question — is being declined by the permission gate, so I'm unable to create files, modify them, or commit. This looks like the session is running without write permission granted (consistent with the unattended queue setup: `claude-folder-queue.log` / `nohup.out`).
+
+I can't complete or commit the task until write access is granted. So that the work isn't lost, here is the complete, ready-to-apply implementation. Once you grant write/edit permission, I can apply all of this and commit it in one pass.
+
+## Plan (3 changes, all scoped to the Fresh page body)
+
+1. **New file** `src/components/FreshMarket.jsx` — the Fresh Market page body (hero, category sidebar + chips + sort, "Fresh Today" product grid with quantity selectors and add-to-cart, plus Popular Fruits / Vegetables Ready Now / Recommended Farmers rows).
+2. **Edit** `src/pages/HomePage.jsx` — swap the current `<MarketHero />` for `<FreshMarket />`, keeping `UpcomingSeason`, `FeaturedCrop`, and `FooterSection` so the existing `#upcoming` / `#featured` navbar anchors still resolve. No header/navbar/search/cart/profile changes.
+3. **Append** styles to `src/styles.css` (all `fm-`/`fresh-market` prefixed — no existing selectors touched).
+
+Note: the task folder is named `task-2-wholesale`, but `task.md` describes the **Fresh** page and explicitly says *"Fresh = small quantity + add to cart. Wholesale = large quantity + make offer. Do not mix them."* — so I built it strictly as a small-quantity, add-to-cart Fresh page (no wholesale/make-offer). The "Fresh" navbar tab routes to `#/market` (HomePage), which matches the supplied `Fresh.png` showing "Fresh" active under the market-shell header.
+
+---
+
+### 1. `src/components/FreshMarket.jsx`
+
+```jsx
+import { useMemo, useState } from "react";
+
+// Fresh Market page body — small-quantity, ready-now buying with add-to-cart.
+// NOT wholesale (no large quantities / make-offer here).
+
+const HERO_BADGES = [
+  { icon: "🌿", label: "Ready now", kh: "មានរួចរាល់" },
+  { icon: "✅", label: "Verified farmers", kh: "កសិករបានផ្ទៀងផ្ទាត់" },
+  { icon: "⚖️", label: "Fair price", kh: "តម្លៃសមរម្យ" },
+  { icon: "🚚", label: "Same-day / next-day supply", kh: "ផ្គត់ផ្គង់ភ្លាមៗ" },
+];
+
+const CATEGORIES = [
+  { key: "all", label: "All", kh: "ទាំងអស់", count: 56 },
+  { key: "fruits", label: "Fruits", kh: "ផ្លែឈើ", count: 21 },
+  { key: "vegetables", label: "Vegetables", kh: "បន្លែ", count: 18 },
+  { key: "rice", label: "Rice", kh: "អង្ករ", count: 9 },
+  { key: "herbs", label: "Herbs", kh: "គ្រឿងទេស", count: 6 },
+  { key: "organic", label: "Organic", kh: "សរីរាង្គ", count: 4 },
+  { key: "near", label: "Near me", kh: "ជិតខ្ញុំ", count: 12 },
+];
+
+const SORT_OPTIONS = [
+  { key: "popular", label: "Popular" },
+  { key: "price", label: "Lowest price" },
+  { key: "rating", label: "Highest rating" },
+  { key: "near", label: "Near me" },
+];
+
+// kg products use the standard small-quantity steps; coconut is sold "each".
+const KG_STEPS = [1, 2, 3, 5, 6];
+const EACH_STEPS = [1, 3, 6];
+
+const PRODUCTS = [
+  { id: "mango", emoji: "🥭", kh: "ស្វាយកែវរមៀត", en: "Keo Romeat Mango", farmer: "Sok Chan Farm", province: "Kampong Speu", priceValue: 500, priceLabel: "500៛", unit: "kg", today: "80kg today", badge: "Grade A", rating: 4.8, categories: ["fruits", "near"], c1: "#ffe2a8", c2: "#f6b24a" },
+  { id: "tomato", emoji: "🍅", kh: "ប៉េងប៉ោះ", en: "Tomato", farmer: "Dara Farm", province: "Takeo", priceValue: 1200, priceLabel: "1,200៛", unit: "kg", today: "45kg today", badge: "Fresh", rating: 4.7, categories: ["vegetables"], c1: "#ffd0c4", c2: "#e3604a" },
+  { id: "cucumber", emoji: "🥒", kh: "ត្រសក់", en: "Cucumber", farmer: "Maly Farm", province: "Kandal", priceValue: 900, priceLabel: "900៛", unit: "kg", today: "60kg today", badge: "Ready now", rating: 4.6, categories: ["vegetables", "near"], c1: "#d7f0b8", c2: "#7fb24a" },
+  { id: "banana", emoji: "🍌", kh: "ចេក", en: "Banana", farmer: "Lina Organic Farm", province: "Kampong Cham", priceValue: 1000, priceLabel: "1,000៛", unit: "kg", today: "70kg today", badge: "Organic", rating: 4.9, categories: ["fruits", "organic"], c1: "#fff0b0", c2: "#ecc23a" },
+  { id: "morning-glory", emoji: "🥬", kh: "ត្រកួន", en: "Morning Glory", farmer: "Vireak Farm", province: "Prey Veng", priceValue: 800, priceLabel: "800៛", unit: "kg", today: "35kg today", badge: "Fresh", rating: 4.7, categories: ["vegetables"], c1: "#c9eab0", c2: "#5c9b61" },
+  { id: "coconut", emoji: "🥥", kh: "ដូងខ្ចី", en: "Young Coconut", farmer: "Chanthy Farm", province: "Kampot", priceValue: 1500, priceLabel: "1,500៛", unit: "each", today: "50 today", badge: "Popular", rating: 4.8, categories: ["fruits", "near"], c1: "#e7f3d8", c2: "#a9c98a" },
+];
+
+const POPULAR_FRUITS = [
+  { emoji: "🥭", kh: "ស្វាយ", en: "Mango", price: "500៛/kg" },
+  { emoji: "🍌", kh: "ចេក", en: "Banana", price: "1,000៛/kg" },
+  { emoji: "🥥", kh: "ដូងខ្ចី", en: "Young Coconut", price: "1,500៛/each" },
+  { emoji: "🍈", kh: "ឪឡឹក", en: "Melon", price: "1,800៛/kg" },
+];
+
+const VEG_READY = [
+  { emoji: "🍅", kh: "ប៉េងប៉ោះ", en: "Tomato", price: "1,200៛/kg" },
+  { emoji: "🥒", kh: "ត្រសក់", en: "Cucumber", price: "900៛/kg" },
+  { emoji: "🥬", kh: "ត្រកួន", en: "Morning Glory", price: "800៛/kg" },
+  { emoji: "🌶️", kh: "ម្ទេស", en: "Chili", price: "2,400៛/kg" },
+];
+
+const FARMERS = [
+  { initials: "SC", name: "Sok Chan Farm", province: "Kampong Speu", rating: 4.8 },
+  { initials: "LO", name: "Lina Organic Farm", province: "Kampong Cham", rating: 4.9 },
+  { initials: "DF", name: "Dara Farm", province: "Takeo", rating: 4.7 },
+  { initials: "MF", name: "Maly Farm", province: "Kandal", rating: 4.6 },
+];
+
+function stepsFor(product) {
+  return product.unit === "each" ? EACH_STEPS : KG_STEPS;
+}
+
+function ProductCard({ product }) {
+  const steps = stepsFor(product);
+  const [stepIndex, setStepIndex] = useState(0);
+  const [added, setAdded] = useState(false);
+  const qty = steps[stepIndex];
+
+  function changeQty(delta) {
+    setStepIndex((i) => Math.min(steps.length - 1, Math.max(0, i + delta)));
+  }
+  function addToCart() {
+    setAdded(true);
+    window.setTimeout(() => setAdded(false), 1600);
+  }
+
+  const unitWord = product.unit === "each" ? "each" : "kg";
+
+  return (
+    <article className="fm-card">
+      <div className="fm-card-img" style={{ "--c1": product.c1, "--c2": product.c2 }}>
+        <span className="fm-emoji" aria-hidden="true">{product.emoji}</span>
+        <span className="fm-badge">{product.badge}</span>
+        <span className="fm-today">{product.today}</span>
+      </div>
+      <div className="fm-card-body">
+        <strong className="fm-kh">{product.kh}</strong>
+        <span className="fm-en">{product.en}</span>
+        <span className="fm-farm">{product.farmer} · {product.province}</span>
+        <div className="fm-rate-row">
+          <span className="fm-rating" aria-label={`Rated ${product.rating} out of 5`}>★ {product.rating.toFixed(1)}</span>
+          <span className="fm-price"><strong>{product.priceLabel}</strong>/{unitWord}</span>
+        </div>
+        <div className="fm-qty" role="group" aria-label={`Quantity for ${product.en}`}>
+          <button type="button" className="fm-qty-btn" onClick={() => changeQty(-1)} disabled={stepIndex === 0} aria-label="Decrease quantity">−</button>
+          <span className="fm-qty-value">{qty} {unitWord}</span>
+          <button type="button" className="fm-qty-btn" onClick={() => changeQty(1)} disabled={stepIndex === steps.length - 1} aria-label="Increase quantity">+</button>
+        </div>
+        <button type="button" className={`fm-add ${added ? "is-added" : ""}`} onClick={addToCart}>
+          {added ? "✓ Added to cart" : "Add to cart"}
+        </button>
+      </div>
+    </article>
+  );
+}
+
+function MiniCard({ item }) {
+  return (
+    <article className="fm-mini">
+      <div className="fm-mini-img" aria-hidden="true">{item.emoji}</div>
+      <div className="fm-mini-body">
+        <strong>{item.kh}</strong>
+        <span>{item.en}</span>
+        <span className="fm-mini-price">{item.price}</span>
+      </div>
+    </article>
+  );
+}
+
+export default function FreshMarket() {
+  const [activeCategory, setActiveCategory] = useState("all");
+  const [sort, setSort] = useState("popular");
+
+  const visibleProducts = useMemo(() => {
+    let list = activeCategory === "all" ? PRODUCTS : PRODUCTS.filter((p) => p.categories.includes(activeCategory));
+    list = [...list];
+    if (sort === "price") list.sort((a, b) => a.priceValue - b.priceValue);
+    else if (sort === "rating") list.sort((a, b) => b.rating - a.rating);
+    return list;
+  }, [activeCategory, sort]);
+
+  return (
+    <div className="fresh-market">
+      <section className="fm-hero" id="top">
+        <div className="fm-hero-copy">
+          <span className="fm-hero-kicker">ផ្សារ​ស្រស់ · Fresh Market</span>
+          <h1>Fresh Market</h1>
+          <p>Ready-now crops from Cambodian farmers, available in small quantities for daily buyers.</p>
+          <ul className="fm-hero-badges">
+            {HERO_BADGES.map((b) => (
+              <li key={b.label}>
+                <span className="fm-hero-badge-icon" aria-hidden="true">{b.icon}</span>
+                <span className="fm-hero-badge-text"><strong>{b.label}</strong><em>{b.kh}</em></span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="fm-hero-visual" aria-label="Fresh produce">
+          <div className="fm-hero-basket">
+            <span>🥭</span><span>🍅</span><span>🥬</span><span>🍌</span><span>🥒</span><span>🥥</span>
+            <span className="fm-hero-basket-base" aria-hidden="true">🧺</span>
+          </div>
+        </div>
+      </section>
+
+      <section className="fm-shop page-section">
+        <aside className="fm-sidebar" aria-label="Filter products">
+          <h2 className="fm-sidebar-title">Categories <span>ប្រភេទ</span></h2>
+          <ul className="fm-cat-list">
+            {CATEGORIES.map((c) => (
+              <li key={c.key}>
+                <button type="button" className={activeCategory === c.key ? "is-active" : ""} onClick={() => setActiveCategory(c.key)}>
+                  <span className="fm-cat-name">{c.kh} <em>{c.label}</em></span>
+                  <span className="fm-cat-count">{c.count}</span>
+                </button>
+              </li>
+            ))}
+          </ul>
+          <div className="fm-price-filter">
+            <label htmlFor="fm-price">Price (៛/kg)</label>
+            <input id="fm-price" type="range" min="500" max="5000" defaultValue="5000" step="100" />
+            <div className="fm-price-scale"><span>500៛</span><span>5,000៛+</span></div>
+          </div>
+          <button type="button" className="button button-secondary fm-apply">Apply filters</button>
+        </aside>
+
+        <div className="fm-main">
+          <div className="fm-toolbar">
+            <div className="fm-chips" role="tablist" aria-label="Categories">
+              {CATEGORIES.map((c) => (
+                <button type="button" key={c.key} role="tab" aria-selected={activeCategory === c.key}
+                  className={`fm-chip ${activeCategory === c.key ? "is-active" : ""}`} onClick={() => setActiveCategory(c.key)}>
+                  {c.label}
+                </button>
+              ))}
+            </div>
+            <label className="fm-sort">
+              <span>Sort by</span>
+              <select value={sort} onChange={(e) => setSort(e.target.value)}>
+                {SORT_OPTIONS.map((o) => (<option key={o.key} value={o.key}>{o.label}</option>))}
+              </select>
+            </label>
+          </div>
+
+          <div className="fm-row-head">
+            <h2>Fresh Today <span>ស្រស់​ថ្ងៃនេះ</span></h2>
+            <a className="fm-see-all" href="#/search">See all →</a>
+          </div>
+
+          {visibleProducts.length > 0 ? (
+            <div className="fm-grid">{visibleProducts.map((p) => (<ProductCard key={p.id} product={p} />))}</div>
+          ) : (
+            <p className="fm-empty">No ready-now crops in this category yet.</p>
+          )}
+        </div>
+      </section>
+
+      <section className="fm-extra page-section">
+        <div className="fm-row-head"><h2>Popular Fruits <span>ផ្លែឈើពេញនិយម</span></h2><a className="fm-see-all" href="#/search">See all →</a></div>
+        <div className="fm-mini-grid">{POPULAR_FRUITS.map((item) => <MiniCard key={item.en} item={item} />)}</div>
+
+        <div className="fm-row-head"><h2>Vegetables Ready Now <span>បន្លែ​រួចរាល់</span></h2><a className="fm-see-all" href="#/search">See all →</a></div>
+        <div className="fm-mini-grid">{VEG_READY.map((item) => <MiniCard key={item.en} item={item} />)}</div>
+
+        <div className="fm-row-head"><h2>Recommended Farmers <span>កសិករ​ណែនាំ</span></h2><a className="fm-see-all" href="#/search">See all →</a></div>
+        <div className="fm-mini-grid">
+          {FARMERS.map((f) => (
+            <article className="fm-farmer" key={f.name}>
+              <span className="fm-farmer-avatar" aria-hidden="true">{f.initials}</span>
+              <div className="fm-farmer-body">
+                <strong>{f.name}</strong><span>{f.province}</span><span className="fm-rating">★ {f.rating.toFixed(1)}</span>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+    </div>
+  );
+}
+```
+
+### 2. `src/pages/HomePage.jsx`
+
+Replace line 1 `import MarketHero ...` with `import FreshMarket from "../components/FreshMarket.jsx";` and replace `<MarketHero />` with `<FreshMarket />`.
+
+### 3. `src/styles.css` (append at end)
+
+```css
+/* ───────────── Fresh Market page ───────────── */
+.fresh-market { background: var(--cream-100); }
+.fm-hero {
+  display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px; align-items: center;
+  padding: clamp(40px, 5vw, 72px) clamp(20px, 5vw, 72px);
+  background: linear-gradient(135deg, var(--cream-50), #eef6e6);
+}
+.fm-hero-kicker { color: var(--green-700); font-weight: 900; letter-spacing: .12em; text-transform: uppercase; font-size: .78rem; }
+.fm-hero h1 { color: var(--green-900); font-size: clamp(2.4rem, 5vw, 4rem); margin: 10px 0 12px; }
+.fm-hero p { color: var(--muted); font-size: clamp(1rem, 1.4vw, 1.18rem); max-width: 46ch; line-height: 1.6; }
+.fm-hero-badges { list-style: none; display: flex; flex-wrap: wrap; gap: 12px; padding: 0; margin: 26px 0 0; }
+.fm-hero-badges li { display: inline-flex; align-items: center; gap: 10px; background: var(--white); border: 1px solid var(--line); border-radius: 14px; padding: 10px 14px; box-shadow: var(--shadow-soft); }
+.fm-hero-badge-icon { font-size: 1.2rem; }
+.fm-hero-badge-text strong { display: block; color: var(--green-900); font-size: .86rem; }
+.fm-hero-badge-text em { font-style: normal; color: var(--muted); font-size: .72rem; }
+.fm-hero-visual { display: flex; justify-content: center; }
+.fm-hero-basket {
+  position: relative; width: min(380px, 80vw); aspect-ratio: 1; border-radius: 28px;
+  background: radial-gradient(circle at 50% 40%, #d6efc0, #a9c98a);
+  display: grid; grid-template-columns: repeat(3, 1fr); place-items: center; gap: 6px;
+  box-shadow: var(--shadow-card); font-size: clamp(2.4rem, 6vw, 3.6rem); padding: 28px;
+}
+.fm-hero-basket-base { position: absolute; bottom: -6px; left: 50%; transform: translateX(-50%); font-size: clamp(4rem, 12vw, 7rem); }
+
+.fm-shop { display: grid; grid-template-columns: 250px 1fr; gap: 32px; align-items: start; padding-top: clamp(36px, 5vw, 64px); }
+.fm-sidebar { position: sticky; top: 96px; background: var(--white); border: 1px solid var(--line); border-radius: 20px; padding: 20px; box-shadow: var(--shadow-soft); }
+.fm-sidebar-title { font-size: 1rem; color: var(--green-900); margin: 0 0 14px; }
+.fm-sidebar-title span { color: var(--muted); font-weight: 600; font-size: .85rem; }
+.fm-cat-list { list-style: none; padding: 0; margin: 0 0 18px; display: grid; gap: 4px; }
+.fm-cat-list button { width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 9px 12px; border: 0; background: transparent; border-radius: 12px; color: var(--ink); transition: background .2s; }
+.fm-cat-list button:hover { background: var(--cream-200); }
+.fm-cat-list button.is-active { background: var(--green-900); color: var(--white); }
+.fm-cat-name em { font-style: normal; color: inherit; opacity: .7; font-size: .82rem; margin-left: 4px; }
+.fm-cat-count { font-size: .76rem; opacity: .7; }
+.fm-price-filter label { display: block; font-weight: 800; color: var(--green-900); font-size: .85rem; margin-bottom: 8px; }
+.fm-price-filter input[type="range"] { width: 100%; accent-color: var(--green-600); }
+.fm-price-scale { display: flex; justify-content: space-between; color: var(--muted); font-size: .74rem; margin-top: 4px; }
+.fm-apply { width: 100%; margin-top: 16px; min-height: 44px; }
+
+.fm-toolbar { display: flex; flex-wrap: wrap; gap: 14px; justify-content: space-between; align-items: center; margin-bottom: 22px; }
+.fm-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.fm-chip { border: 1px solid var(--line); background: var(--white); color: var(--green-700); border-radius: 999px; padding: 8px 16px; font-weight: 700; font-size: .85rem; transition: all .2s; }
+.fm-chip:hover { border-color: var(--green-500); }
+.fm-chip.is-active { background: var(--green-900); border-color: var(--green-900); color: var(--white); }
+.fm-sort { display: inline-flex; align-items: center; gap: 8px; color: var(--muted); font-size: .85rem; font-weight: 700; }
+.fm-sort select { border: 1px solid var(--line); border-radius: 12px; padding: 8px 12px; background: var(--white); color: var(--green-900); font-weight: 700; }
+
+.fm-row-head { display: flex; justify-content: space-between; align-items: baseline; margin: 8px 0 16px; }
+.fm-row-head h2 { color: var(--green-900); font-size: clamp(1.3rem, 2.4vw, 1.7rem); margin: 0; }
+.fm-row-head h2 span { color: var(--muted); font-weight: 600; font-size: .9rem; margin-left: 6px; }
+.fm-see-all { color: var(--green-700); font-weight: 800; font-size: .85rem; }
+.fm-see-all:hover { color: var(--green-900); }
+.fm-empty { color: var(--muted); padding: 30px 0; }
+
+.fm-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; }
+.fm-card { background: var(--white); border: 1px solid var(--line); border-radius: 20px; overflow: hidden; box-shadow: var(--shadow-soft); transition: transform .28s var(--ease), box-shadow .28s var(--ease); display: flex; flex-direction: column; }
+.fm-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-card); }
+.fm-card-img { position: relative; aspect-ratio: 16/11; background: linear-gradient(150deg, var(--c1, #ffe2a8), var(--c2, #f6b24a)); display: flex; align-items: center; justify-content: center; }
+.fm-emoji { font-size: clamp(3rem, 7vw, 4.4rem); filter: drop-shadow(0 6px 10px rgba(0,0,0,.18)); }
+.fm-badge { position: absolute; top: 10px; left: 10px; background: rgba(255,255,255,.92); color: var(--green-900); font-weight: 800; font-size: .72rem; padding: 4px 10px; border-radius: 999px; }
+.fm-today { position: absolute; bottom: 10px; right: 10px; background: var(--green-900); color: var(--white); font-weight: 700; font-size: .72rem; padding: 4px 10px; border-radius: 999px; }
+.fm-card-body { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 4px; flex: 1; }
+.fm-kh { color: var(--green-900); font-size: 1.02rem; }
+.fm-en { color: var(--ink); font-size: .86rem; }
+.fm-farm { color: var(--muted); font-size: .78rem; }
+.fm-rate-row { display: flex; justify-content: space-between; align-items: center; margin: 6px 0 4px; }
+.fm-rating { color: var(--gold); font-weight: 800; font-size: .82rem; }
+.fm-price strong { color: var(--green-900); font-size: 1.05rem; }
+.fm-price { color: var(--muted); font-size: .8rem; }
+.fm-qty { display: flex; align-items: center; justify-content: space-between; border: 1px solid var(--line); border-radius: 12px; padding: 4px; margin: 8px 0; }
+.fm-qty-btn { width: 32px; height: 32px; border: 0; border-radius: 9px; background: var(--cream-200); color: var(--green-900); font-size: 1.1rem; font-weight: 800; line-height: 1; }
+.fm-qty-btn:hover:not(:disabled) { background: var(--green-300); }
+.fm-qty-btn:disabled { opacity: .4; cursor: not-allowed; }
+.fm-qty-value { font-weight: 800; color: var(--green-900); font-size: .9rem; }
+.fm-add { width: 100%; min-height: 44px; border: 0; border-radius: 12px; background: linear-gradient(180deg, var(--green-600), var(--green-700)); color: var(--white); font-weight: 800; transition: background .25s, transform .15s; margin-top: auto; }
+.fm-add:hover { transform: translateY(-1px); }
+.fm-add.is-added { background: var(--green-900); }
+
+.fm-extra { display: block; }
+.fm-mini-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 16px; margin-bottom: 36px; }
+.fm-mini, .fm-farmer { background: var(--white); border: 1px solid var(--line); border-radius: 16px; box-shadow: var(--shadow-soft); transition: transform .25s var(--ease); }
+.fm-mini:hover, .fm-farmer:hover { transform: translateY(-4px); }
+.fm-mini { display: flex; align-items: center; gap: 12px; padding: 12px; }
+.fm-mini-img { font-size: 2rem; width: 54px; height: 54px; display: flex; align-items: center; justify-content: center; background: var(--cream-200); border-radius: 12px; }
+.fm-mini-body { display: flex; flex-direction: column; }
+.fm-mini-body strong { color: var(--green-900); font-size: .92rem; }
+.fm-mini-body span { color: var(--ink); font-size: .78rem; }
+.fm-mini-price { color: var(--green-700) !important; font-weight: 800; }
+.fm-farmer { display: flex; align-items: center; gap: 12px; padding: 14px; }
+.fm-farmer-avatar { width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(150deg, var(--green-500), var(--green-700)); color: var(--white); display: flex; align-items: center; justify-content: center; font-weight: 800; }
+.fm-farmer-body { display: flex; flex-direction: column; }
+.fm-farmer-body strong { color: var(--green-900); font-size: .9rem; }
+.fm-farmer-body span { color: var(--muted); font-size: .78rem; }
+
+@media (max-width: 900px) {
+  .fm-hero { grid-template-columns: 1fr; }
+  .fm-shop { grid-template-columns: 1fr; }
+  .fm-sidebar { display: none; }            /* sidebar collapses; top chips remain on mobile */
+  .fm-chips { overflow-x: auto; flex-wrap: nowrap; padding-bottom: 4px; -webkit-overflow-scrolling: touch; }
+  .fm-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }  /* mobile: 2 columns */
+}
+```
+
+---
+
+This satisfies every `task.md` requirement: Fresh Market hero + 4 badges + produce visual; category chips + sort dropdown (and the sidebar shown in `Fresh.png`); "Fresh Today" grid with all 6 products (correct Khmer/English names, farmers, provinces, prices, today-quantities, badges, ratings); quantity selectors (1/2/3/5/6 kg, and 1/3/6 each for coconut); add-to-cart success state; hover lift; active category state; "See all" links; and the three bottom rows — all kept strictly small-quantity + add-to-cart (no wholesale).
+
+**To finish:** please grant write permission (or switch the session to accept edits), and I'll apply these three changes and commit with a message like:
+
+```
+feat(fresh): build Fresh Market page body (hero, filters, product grid, rows)
+```
+
+**Nothing has been changed on disk yet** — the header, navbar, search, cart, profile, and language switcher are all untouched, and no other task's files were modified.
+Completed claude-queue/task-2-wholesale at Sun Jun 14 04:30:48 +07 2026
+Pausing 5 minutes before next task...
+======================================
+Waiting to run task folder: claude-queue/task-3-season
+Started checking at Sun Jun 14 04:35:48 +07 2026
+Trying Claude for claude-queue/task-3-season at Sun Jun 14 04:35:48 +07 2026
+You've hit your session limit · resets 9:10am (Asia/Phnom_Penh)
+Claude failed / no token / server limited. Waiting 20 minutes...
+I'm blocked: every file write and edit is being declined by the permission system, so I cannot create `FreshMarket.jsx`, modify `HomePage.jsx`, or append to `styles.css`. Nothing has been changed on disk yet.
+
+Before I can complete the Fresh Market page, I need write/edit access to the project. Here's exactly what I plan to do (no shared header/nav/search/cart/profile/language changes):
+
+**Plan (3 file changes):**
+1. **New** `src/components/FreshMarket.jsx` — the full Fresh page body: Fresh Market hero (title, subtitle, 4 badges, produce visual), category chips (All/Fruits/Vegetables/Rice/Herbs/Organic/Near me) + sort dropdown (Popular/Lowest price/Highest rating/Near me), the "Fresh Today" product grid with all 6 products (Mango, Tomato, Cucumber, Banana, Morning Glory, Coconut) — each with image, Khmer+English name, farmer, province, price, available-today qty, badge, rating, quantity selector (1/2/3/5/6 kg; coconut 1/3/6 each), and Add-to-cart with success state; plus the 3 extra rows (Popular Fruits, Vegetables Ready Now, Recommended Farmers) with "See all" links.
+2. **Edit** `src/pages/HomePage.jsx` — render `<FreshMarket />` then `<FooterSection />` (the market route is where the navbar already marks the **Fresh** tab active and shows the market-shell header matching `Fresh.png`).
+3. **Edit** `src/styles.css` — append a `.fresh-market` style block (white/cream bg, green accents, rounded cards, soft shadows, hover-lift, responsive 2-col mobile grid + horizontal chips).
+
+I deliberately keep `MarketHero.jsx`/`UpcomingSeason.jsx`/`FeaturedCrop.jsx` files in place (just no longer rendered) and leave the navbar/header untouched, so it's reversible and contained.
+
+Could you grant file write/edit permission (or approve the prompts)? Once you do, I'll write the three changes and commit. 
+
+Do you want me to proceed with this exact plan?
+Completed claude-queue/task-2-wholesale at Sun Jun 14 04:39:50 +07 2026
+Pausing 5 minutes before next task...
+======================================
+Waiting to run task folder: claude-queue/task-3-season
+Started checking at Sun Jun 14 04:44:50 +07 2026
+Trying Claude for claude-queue/task-3-season at Sun Jun 14 04:44:50 +07 2026
+You've hit your session limit · resets 9:10am (Asia/Phnom_Penh)
+Claude failed / no token / server limited. Waiting 20 minutes...
+Trying Claude for claude-queue/task-3-season at Sun Jun 14 04:59:32 +07 2026
+You've hit your session limit · resets 9:10am (Asia/Phnom_Penh)
+Claude failed / no token / server limited. Waiting 20 minutes...
+Trying Claude for claude-queue/task-3-season at Sun Jun 14 05:04:53 +07 2026
+You've hit your session limit · resets 9:10am (Asia/Phnom_Penh)
+Claude failed / no token / server limited. Waiting 20 minutes...
+Trying Claude for claude-queue/task-3-season at Sun Jun 14 05:19:35 +07 2026
+You've hit your session limit · resets 9:10am (Asia/Phnom_Penh)
+Claude failed / no token / server limited. Waiting 20 minutes...
+Trying Claude for claude-queue/task-3-season at Sun Jun 14 05:24:56 +07 2026
+You've hit your session limit · resets 9:10am (Asia/Phnom_Penh)
+Claude failed / no token / server limited. Waiting 20 minutes...
+Trying Claude for claude-queue/task-3-season at Sun Jun 14 05:39:38 +07 2026
+You've hit your session limit · resets 9:10am (Asia/Phnom_Penh)
+Claude failed / no token / server limited. Waiting 20 minutes...
+Trying Claude for claude-queue/task-3-season at Sun Jun 14 05:44:59 +07 2026
+You've hit your session limit · resets 9:10am (Asia/Phnom_Penh)
+Claude failed / no token / server limited. Waiting 20 minutes...
+Trying Claude for claude-queue/task-3-season at Sun Jun 14 05:59:40 +07 2026
+You've hit your session limit · resets 9:10am (Asia/Phnom_Penh)
+Claude failed / no token / server limited. Waiting 20 minutes...
+Trying Claude for claude-queue/task-3-season at Sun Jun 14 06:05:02 +07 2026
+You've hit your session limit · resets 9:10am (Asia/Phnom_Penh)
+Claude failed / no token / server limited. Waiting 20 minutes...
+Trying Claude for claude-queue/task-3-season at Sun Jun 14 06:19:43 +07 2026
+You've hit your session limit · resets 9:10am (Asia/Phnom_Penh)
+Claude failed / no token / server limited. Waiting 20 minutes...
+Trying Claude for claude-queue/task-3-season at Sun Jun 14 06:25:05 +07 2026
+You've hit your session limit · resets 9:10am (Asia/Phnom_Penh)
+Claude failed / no token / server limited. Waiting 20 minutes...
+Trying Claude for claude-queue/task-3-season at Sun Jun 14 06:39:46 +07 2026
+You've hit your session limit · resets 9:10am (Asia/Phnom_Penh)
+Claude failed / no token / server limited. Waiting 20 minutes...
+Trying Claude for claude-queue/task-3-season at Sun Jun 14 06:45:08 +07 2026
+You've hit your session limit · resets 9:10am (Asia/Phnom_Penh)
+Claude failed / no token / server limited. Waiting 20 minutes...
+Trying Claude for claude-queue/task-3-season at Sun Jun 14 06:59:50 +07 2026
+You've hit your session limit · resets 9:10am (Asia/Phnom_Penh)
+Claude failed / no token / server limited. Waiting 20 minutes...
+Trying Claude for claude-queue/task-3-season at Sun Jun 14 07:05:11 +07 2026
+You've hit your session limit · resets 9:10am (Asia/Phnom_Penh)
+Claude failed / no token / server limited. Waiting 20 minutes...
+Trying Claude for claude-queue/task-3-season at Sun Jun 14 07:19:53 +07 2026
+You've hit your session limit · resets 9:10am (Asia/Phnom_Penh)
+Claude failed / no token / server limited. Waiting 20 minutes...
+Trying Claude for claude-queue/task-3-season at Sun Jun 14 07:25:13 +07 2026
+You've hit your session limit · resets 9:10am (Asia/Phnom_Penh)
+Claude failed / no token / server limited. Waiting 20 minutes...
+Trying Claude for claude-queue/task-3-season at Sun Jun 14 07:39:55 +07 2026
+You've hit your session limit · resets 9:10am (Asia/Phnom_Penh)
+Claude failed / no token / server limited. Waiting 20 minutes...
+Trying Claude for claude-queue/task-3-season at Sun Jun 14 07:45:16 +07 2026
+You've hit your session limit · resets 9:10am (Asia/Phnom_Penh)
+Claude failed / no token / server limited. Waiting 20 minutes...
+Trying Claude for claude-queue/task-3-season at Sun Jun 14 07:59:58 +07 2026
+You've hit your session limit · resets 9:10am (Asia/Phnom_Penh)
+Claude failed / no token / server limited. Waiting 20 minutes...
+Trying Claude for claude-queue/task-3-season at Sun Jun 14 08:05:19 +07 2026
+You've hit your session limit · resets 9:10am (Asia/Phnom_Penh)
+Claude failed / no token / server limited. Waiting 20 minutes...
+Trying Claude for claude-queue/task-3-season at Sun Jun 14 08:20:05 +07 2026
+You've hit your session limit · resets 9:10am (Asia/Phnom_Penh)
+Claude failed / no token / server limited. Waiting 20 minutes...
